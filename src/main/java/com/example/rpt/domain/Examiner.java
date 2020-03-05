@@ -9,9 +9,9 @@ public class Examiner {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String name;
+    private String examinerName;
 
-    private String password;
+    private String documentOfAllowance;
 
     @OneToMany(targetEntity = Case.class, fetch = FetchType.LAZY)
     private Set<Case> cases;
@@ -27,20 +27,20 @@ public class Examiner {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getExaminerName() {
+        return examinerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setExaminerName(String name) {
+        this.examinerName = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getDocumentOfAllowance() {
+        return documentOfAllowance;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDocumentOfAllowance(String documentOfAllowance) {
+        this.documentOfAllowance = documentOfAllowance;
     }
 
     public Set<Case> getCases() {
