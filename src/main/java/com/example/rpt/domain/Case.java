@@ -21,6 +21,7 @@ public class Case {
 
     private Date dateOfExecution;
 
+    //TODO сделать список либо выбор из выпадающего списка
     private String whoAppointed;
 
     private String initiator;
