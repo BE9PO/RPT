@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+      lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-12">
             <h4 class="mb-3">Данные из постановления</h4>
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" action="/add" th:action="@{add}" novalidate>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="code">Код экспертизы присвоенный УКСД*</label>
@@ -98,14 +98,11 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="typeOfCase">Тип экспертизы</label>
                             </div>
-                            <select class="custom-select" id="typeOfCase" name="typeOfCase" required>
+                            <select class="custom-select" id="typeOfCase" name="typeOfCase">
                                 <option selected value="ORIGINAL">Первоначальная</option>
                                 <option value="ADDITIONAL">Дополнительная</option>
                                 <option value="REPEAT">Повторная</option>
                             </select>
-                        </div>
-                        <div class="invalid-feedback">
-                            Тип экспертизы должен быть введен.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -113,15 +110,12 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="kindOfExamination">Вид экспертизы</label>
                             </div>
-                            <select class="custom-select" id="kindOfExamination" name="kindOfExamination" required>
+                            <select class="custom-select" id="kindOfExamination" name="kindOfExamination">
                                 <option value="REU" selected>Рэу</option>
                                 <option value="KT">Кт</option>
                                 <option value="FONO">Фоно</option>
                                 <option value="LINGVO">Лингво</option>
                             </select>
-                        </div>
-                        <div class="invalid-feedback">
-                            Вид экспертизы должен быть введен.
                         </div>
                     </div>
                 </div>
@@ -144,12 +138,15 @@
                 </div>
                 <hr class="mb-4">
                 <div class="mb-3">
-                    <label for="username">Кому поручено проведение экспертизы</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="username" placeholder="Username" required>
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your username is required.
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="examinerName">Кому поручено проведение
+                                экспертизы</label>
                         </div>
+                        <select th:field="*{examiners}" class="custom-select" id="examinerName" name="examinerName">
+                            <option th:each="examiner : ${examiners}" th:value="${examiner.getExaminerName()}"
+                                    th:text="${examiner.getExaminerName()}"></option>
+                        </select>
                     </div>
                 </div>
                 <hr class="mb-4">
