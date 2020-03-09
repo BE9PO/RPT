@@ -1,8 +1,8 @@
 package com.example.rpt.controller;
 
-import com.example.rpt.domain.Case;
+import com.example.rpt.domain.Examination;
 import com.example.rpt.domain.Examiner;
-import com.example.rpt.repositories.CaseRepository;
+import com.example.rpt.repositories.ExaminationsRepository;
 import com.example.rpt.repositories.ExaminerRepository;
 import com.example.rpt.utils.DateFormat;
 import com.example.rpt.utils.KindOfExaminationQualifier;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AddController {
     @Autowired
-    private CaseRepository caseRepository;
+    private ExaminationsRepository examinationsRepository;
 
     @Autowired
     private ExaminerRepository examinerRepository;
@@ -57,29 +57,32 @@ public class AddController {
                                    String numberOfObjects,
                            @RequestParam(name = "numberOfQuestions")
                                    String numberOfQuestions,
-                           @RequestParam(name = "examinerName", required = true)
+                           @RequestParam(name = "examinerName")
                                    String examinerName) {
         DateFormat dateFormatter = new DateFormat();
         ReasonQualifier reasonQualifier = new ReasonQualifier();
         TypeOfCaseQualifier typeOfCaseQualifier = new TypeOfCaseQualifier();
         KindOfExaminationQualifier kindOfExaminationQualifier = new KindOfExaminationQualifier();
 
-        Case caseFromUser = new Case();
+        Examination examinationFromUser = new Examination();
 
-        caseFromUser.setDateIntake(dateFormatter.changeType(dateIntake));
-        caseFromUser.setCode(code);
-        caseFromUser.setInitiator(initiator);
-        caseFromUser.setDateOfAppointment(dateFormatter.changeType(dateOfAppointment));
-        caseFromUser.setReason(reasonQualifier.determine(reason));
-        caseFromUser.setNumberOfCase(numberOfCase);
-        caseFromUser.setStaticTelephone(Integer.parseInt(staticTelephone));
-        caseFromUser.setMobileTelephone(Integer.parseInt(mobileTelephone));
-        caseFromUser.setTypeOfCase(typeOfCaseQualifier.determine(typeOfCase));
-        caseFromUser.setKindOfExamination(kindOfExaminationQualifier.determine(kindOfExamination));
-        caseFromUser.setObjectOfCase(objectOfCase);
-        caseFromUser.setNumberOfObjects(Integer.parseInt(numberOfObjects));
-        caseFromUser.setNumberOfQuestions(Integer.parseInt(numberOfQuestions));
+        examinationFromUser.setDateIntake(dateFormatter.changeType(dateIntake));
+        examinationFromUser.setCode(code);
+        examinationFromUser.setInitiator(initiator);
+        examinationFromUser.setDateOfAppointment(dateFormatter.changeType(dateOfAppointment));
+        examinationFromUser.setReason(reasonQualifier.determine(reason));
+        examinationFromUser.setNumberOfCase(numberOfCase);
+        examinationFromUser.setStaticTelephone(Integer.parseInt(staticTelephone));
+        examinationFromUser.setMobileTelephone(Integer.parseInt(mobileTelephone));
+        examinationFromUser.setTypeOfCase(typeOfCaseQualifier.determine(typeOfCase));
+        examinationFromUser.setKindOfExamination(kindOfExaminationQualifier.determine(kindOfExamination));
+        examinationFromUser.setObjectOfCase(objectOfCase);
+        examinationFromUser.setNumberOfObjects(Integer.parseInt(numberOfObjects));
+        examinationFromUser.setNumberOfQuestions(Integer.parseInt(numberOfQuestions));
+        //TODO стовая реализация для проверки сохранения в базу
+        examinationFromUser.setExaminer(examinerRepository.findFirstByExaminerName(examinerName));
         //TODO сохранение имени эксперта
+        examinationsRepository.save(examinationFromUser);
 
         return "add";
     }

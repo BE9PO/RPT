@@ -18,7 +18,8 @@
     <div class="row">
         <div class="col-md-12">
             <h4 class="mb-3">Данные из постановления</h4>
-            <form class="needs-validation" action="/add" th:action="@{add}" novalidate>
+            <form class="needs-validation" action="/add" th:action="@{add}" novalidate method="post">
+
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="code">Код экспертизы присвоенный УКСД*</label>
@@ -143,7 +144,7 @@
                             <label class="input-group-text" for="examinerName">Кому поручено проведение
                                 экспертизы</label>
                         </div>
-                        <select th:field="*{examiners}" class="custom-select" id="examinerName" name="examinerName">
+                        <select class="custom-select" id="examinerName" name="examinerName" th:name="examinerName">
                             <option th:each="examiner : ${examiners}" th:value="${examiner.getExaminerName()}"
                                     th:text="${examiner.getExaminerName()}"></option>
                         </select>

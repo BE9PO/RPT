@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Case {
+public class Examination {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -60,7 +60,7 @@ public class Case {
     @ManyToOne(targetEntity = Examiner.class)
     private Examiner supervisor;
 
-    public Case() {
+    public Examination() {
     }
 
     public Integer getId() {

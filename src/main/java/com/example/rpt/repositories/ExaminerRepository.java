@@ -8,4 +8,7 @@ import java.util.Set;
 public interface ExaminerRepository extends CrudRepository<Examiner, Integer> {
     public Set<Examiner> findAllByExaminerName(String examinerName);
 
+    //TODO for testing
+    public Examiner findFirstByExaminerName(String examinerName);
+
 }

@@ -13,8 +13,8 @@ public class Examiner {
 
     private String documentOfAllowance;
 
-    @OneToMany(targetEntity = Case.class, fetch = FetchType.LAZY)
-    private Set<Case> cases;
+    @OneToMany(targetEntity = Examination.class, fetch = FetchType.LAZY)
+    private Set<Examination> examinations;
 
     public Examiner() {
     }
@@ -43,11 +43,11 @@ public class Examiner {
         this.documentOfAllowance = documentOfAllowance;
     }
 
-    public Set<Case> getCases() {
-        return cases;
+    public Set<Examination> getExaminations() {
+        return examinations;
     }
 
-    public void setCases(Set<Case> cases) {
-        this.cases = cases;
+    public void setExaminations(Set<Examination> examinations) {
+        this.examinations = examinations;
     }
 }
