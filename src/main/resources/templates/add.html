@@ -157,13 +157,7 @@
             </form>
         </div>
     </div>
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2020 GKSE</p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Статистика</a></li>
-            <li class="list-inline-item"><a href="#">Сообщить об ошибке</a></li>
-        </ul>
-    </footer>
+    <footer th:insert="navbar :: footer"></footer>
 </div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -200,5 +194,6 @@
         }, false);
     })();
 </script>
+<div th:insert="navbar :: scriptForIcons"></div>
 </body>
 </html>
