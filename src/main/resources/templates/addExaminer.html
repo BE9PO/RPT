@@ -10,7 +10,9 @@
     <title>RPT addUser</title>
 </head>
 <body class="bg-light">
+<nav th:insert="navbar :: topnavbar"></nav>
 <div class="container">
+
     <div class="py-5 text-center">
         <h2>Административная форма для добавления нового эксперта</h2>
         <p class="lead">В полях ниже необходимо заполнить данные об эксперте</p>
@@ -18,18 +20,18 @@
     <div class="row">
         <div class="col-md-12">
             <form class="needs-validation" action="/addExaminer" th:action="@{addExaminer}" novalidate method="post">
-
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="examinerName">Полное имя эксперта*</label>
-                        <input type="text" class="form-control" name="examinerName" id="examinerName" placeholder="Пример: Смирнова Анна Петровна"
+                        <input type="text" class="form-control" name="examinerName" id="examinerName"
+                               placeholder="Пример: Смирнова Анна Петровна"
                                value="" required>
                         <div class="invalid-feedback">
                             Имя эксперта должно быть введено
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="documentOfAllowance">Номер свидетельства о присвоении допуска</label>
+                        <label for="documentOfAllowance">Номер свидетельства о присвоении допуска*</label>
                         <input type="text" class="form-control" name="documentOfAllowance" id="documentOfAllowance"
                                placeholder="Пример: 00313" value="" required>
                         <div class="invalid-feedback">
@@ -37,7 +39,19 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="dateOfPermission">Дата присвоения первого допуска*</label>
+                        <input type="date" class="form-control" name="dateOfPermission" id="dateOfPermission"
+                               placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="specificity">Специфика работы</label>
+                        <input type="text" class="form-control" name="specificity" id="specificity"
+                               placeholder="" value="">
+                    </div>
+                </div>
                 <hr class="mb-4">
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Добавить эксперта</button>
             </form>
@@ -85,6 +99,10 @@
             });
         }, false);
     })();
+</script>
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
 </script>
 </body>
 </html>

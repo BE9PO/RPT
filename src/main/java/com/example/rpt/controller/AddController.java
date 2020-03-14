@@ -72,8 +72,8 @@ public class AddController {
         examinationFromUser.setDateOfAppointment(dateFormatter.changeType(dateOfAppointment));
         examinationFromUser.setReason(reasonQualifier.determine(reason));
         examinationFromUser.setNumberOfCase(numberOfCase);
-        examinationFromUser.setStaticTelephone(Integer.parseInt(staticTelephone));
-        examinationFromUser.setMobileTelephone(Integer.parseInt(mobileTelephone));
+        examinationFromUser.setStaticTelephone(staticTelephone);
+        examinationFromUser.setMobileTelephone(mobileTelephone);
         examinationFromUser.setTypeOfCase(typeOfCaseQualifier.determine(typeOfCase));
         examinationFromUser.setKindOfExamination(kindOfExaminationQualifier.determine(kindOfExamination));
         examinationFromUser.setObjectOfCase(objectOfCase);

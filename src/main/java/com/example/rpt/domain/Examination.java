@@ -34,9 +34,9 @@ public class Examination {
 
     private Integer numberOfQuestions;
 
-    private Integer mobileTelephone;
+    private String mobileTelephone;
 
-    private Integer staticTelephone;
+    private String staticTelephone;
 
     private Double costOfCase;
 
@@ -167,19 +167,19 @@ public class Examination {
         this.numberOfQuestions = numberOfQuestions;
     }
 
-    public Integer getMobileTelephone() {
+    public String getMobileTelephone() {
         return mobileTelephone;
     }
 
-    public void setMobileTelephone(Integer mobileTelephone) {
+    public void setMobileTelephone(String mobileTelephone) {
         this.mobileTelephone = mobileTelephone;
     }
 
-    public Integer getStaticTelephone() {
+    public String getStaticTelephone() {
         return staticTelephone;
     }
 
-    public void setStaticTelephone(Integer staticTelephone) {
+    public void setStaticTelephone(String staticTelephone) {
         this.staticTelephone = staticTelephone;
     }
 
