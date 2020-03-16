@@ -6,35 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../static/login.css">
-    <title>RPT login</title>
+    <title>RPT registration</title>
 </head>
 <body>
-<div class="sidenav">
-    <div class="login-main-text">
-        <h2>Application<br> Login Page</h2>
-        <p>Login or register from here to access.</p>
-    </div>
-</div>
-<div class="main">
-    <div class="col-md-6 col-sm-12">
-        <div class="login-form">
-            <form th:action="@{/login}" action="/login" method="post">
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="/registration" th:action="@{/registration}"
+                  method="post" class="form-horizontal"
+                  role="form">
+                <h2>Registration Form</h2>
                 <div class="form-group">
-                    <label>Имя пользователя
-                        <input type="text" name="username" class="form-control" placeholder="Введите имя">
-                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" name="username" th:name="username" placeholder="User Name"
+                               class="form-control"/>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>Password
-                        <input type="password" name="password" class="form-control" placeholder="Введите пароль">
-                    </label>
+                    <div class="col-sm-9">
+                        <input type="password" th:name="password"
+                               placeholder="Password" class="form-control" name="password"/>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-black">Войти</button>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
