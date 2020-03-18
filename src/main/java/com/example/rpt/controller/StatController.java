@@ -29,13 +29,14 @@ public class StatController {
         model.addAttribute("examinations", examinations);
 
 
-        //TODO Необходимо протестировать на отдельном примере Стоит сделать ключем не объект а строку, возможны ошибки.
         Iterable<Examination> examinationsExec = examinationsRepository.findByDateOfExecutionAfter(date);
         Map<String, Integer> map = new HashMap<>();
         for (Examination examination : examinationsExec) {
+            int i = 0;
             map.putIfAbsent(examination.getExaminer().getExaminerName(), 1);
             if (map.containsKey(examination.getExaminer().getExaminerName())) {
-                map.replace(examination.getExaminer().getExaminerName(), +1);
+                i = map.get(examination.getExaminer().getExaminerName()) + 1;
+                map.replace(examination.getExaminer().getExaminerName(), i);
             }
         }
         model.addAttribute("solve", map);
