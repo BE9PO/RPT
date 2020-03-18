@@ -23,22 +23,22 @@ public class StatController {
 
     @GetMapping(path = "stat")
     public String getStat(Model model) {
-        int sevenDaysInUnix = 604800;
+        int sevenDaysInUnix = 604800000;
         Date date = new Date(System.currentTimeMillis() - sevenDaysInUnix);
-        Iterable<Examination> examinations = examinationsRepository.findTopByDateIntakeAfter(date);
+        Iterable<Examination> examinations = examinationsRepository.findByDateIntakeAfter(date);
         model.addAttribute("examinations", examinations);
 
 
         //TODO Необходимо протестировать на отдельном примере Стоит сделать ключем не объект а строку, возможны ошибки.
-        Iterable<Examination> examinationsExec = examinationsRepository.findAllByDateOfExecutionExistsAndDateOfExecutionAfter(date);
-        Map<Examiner, Integer> map = new HashMap<>();
+        Iterable<Examination> examinationsExec = examinationsRepository.findByDateOfExecutionAfter(date);
+        Map<String, Integer> map = new HashMap<>();
         for (Examination examination : examinationsExec) {
-            map.putIfAbsent(examination.getExaminer(),1);
-           if (map.containsKey(examination.getExaminer())){
-               map.replace(examination.getExaminer(),+1);
-           }
+            map.putIfAbsent(examination.getExaminer().getExaminerName(), 1);
+            if (map.containsKey(examination.getExaminer().getExaminerName())) {
+                map.replace(examination.getExaminer().getExaminerName(), +1);
+            }
         }
-        model.addAttribute("solve",map);
+        model.addAttribute("solve", map);
 
         return "stat";
     }

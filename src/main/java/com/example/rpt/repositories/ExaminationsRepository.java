@@ -7,7 +7,8 @@ import java.sql.Date;
 import java.util.List;
 
 public interface ExaminationsRepository extends CrudRepository<Examination, Integer> {
-    List<Examination> findTopByDateIntakeAfter (Date date);
-    List<Examination> findAllByDateOfExecutionExistsAndDateOfExecutionAfter(Date date);
+    List<Examination> findByDateIntakeAfter(Date date);
+
+    List<Examination> findByDateOfExecutionAfter(Date date);
 
 }
