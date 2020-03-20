@@ -32,31 +32,23 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="search"></span>
-                            Найти
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/examiners" th:action="@{examiners}">
                             <span data-feather="users"></span>
                             Эксперты
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="bar-chart-2"></span>
-                            Отчеты
+                        <a class="nav-link" href="/filter" th:action="@{filter}">
+                            <span data-feather="search"></span>
+                            Найти
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom centr">
-                <h1 class="h4">динамика исполнения</h1>
-            </div>
-            <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+            <div id="container666"
+                 style="width: 100%; height: 400px; margin: 0 auto"></div>
             <h4>поступление за 7 дней</h4>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
@@ -82,12 +74,7 @@
             </div>
         </main>
     </div>
-    <div class="container">
-        <h2 align="center">Technology Line Graph</h2>
 
-        <div id="container666"
-             style="width: 550px; height: 400px; margin: 0 auto"></div>
-    </div>
 </div>
 <footer th:insert="navbar :: footer"></footer>
 <!-- Bootstrap core JavaScript
@@ -103,38 +90,8 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <div th:insert="navbar :: scriptForIcons"></div>
-
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script th:inline="javascript">
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [[${solve.keySet()}]],
-            datasets: [{
-                data: [[${solve.values()}]],
-                lineTension: 0,
-                backgroundColor: 'transparent',
-                borderColor: '#007bff',
-                borderWidth: 4,
-                pointBackgroundColor: '#007bff'
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: false
-                    }
-                }]
-            },
-            legend: {
-                display: false,
-            }
-        }
-    });
-</script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script th:inline="javascript">

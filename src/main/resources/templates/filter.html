@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/form-validation.css">
+    <title>RPT Search</title>
+</head>
+<body class="bg-light">
+<nav th:insert="navbar :: topnavbar"></nav>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Форма поиска материалов</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-3">Введите данные для поиска информации</h4>
+            <form action="/filter" th:action="@{filter}" method="post">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <label for="code">Код экспертизы присвоенный УКСД</label>
+                        <input type="text" class="form-control" name="code" id="code" placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label for="dateFrom">Дата с...</label>
+                        <input type="date" class="form-control" name="dateFrom" id="dateFrom" placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label for="dateTo">Дата по...</label>
+                        <input type="date" class="form-control" name="dateTo" id="dateTo" placeholder=""
+                               value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <label for="kindOfExamination">Вид экспертизы</label>
+                        <select class="custom-select" id="kindOfExamination" name="kindOfExamination"
+                                th:name="kindOfExamination">
+                            <option th:each="kindOfExam : ${kindOfExamination}" th:value="${kindOfExam.toString()}"
+                                    th:text="${kindOfExam.toString()}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label for="typeOfCase">Тип экспертизы</label>
+                        <select class="custom-select" id="typeOfCase" name="typeOfCase" th:name="typeOfCase">
+                            <option th:each="type : ${typeOfCase}" th:value="${type.toString()}"
+                                    th:text="${type.toString()}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label for="difficulty">Сложность</label>
+                        <select class="custom-select" id="difficulty" name="difficulty" th:name="difficulty">
+                            <option th:each="difficult : ${difficulty}" th:value="${difficult.toString()}"
+                                    th:text="${difficult.toString()}"></option>
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="isExec" name="isExec">
+                            <label class="form-check-label" for="isExec">
+                                Экспертиза исполнена
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="btn btn-primary btn-lg btn-block" type="submit"><span data-feather="search"></span>
+                    Найти...
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+
+</div>
+<footer th:insert="navbar :: footer"></footer>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous">
+</script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+<div th:insert="navbar :: scriptForIcons"></div>
+</body>
+</html>
