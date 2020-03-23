@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/form-validation.css">
+    <title>RPT Поиск</title>
+</head>
+<body class="bg-light">
+<nav th:insert="navbar :: topnavbar"></nav>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Форма поиска материалов материалов</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/search" th:action="@{search}" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="code">Код экспертизы присвоенный УКСД</label>
+                        <input type="text" class="form-control" name="code" id="code" placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="kindOfExamination">Вид экспертизы</label>
+                        <select class="custom-select" id="kindOfExamination" name="kindOfExamination"
+                                th:name="kindOfExamination">
+                            <option th:each="kindOfExam : ${kindOfExamination}" th:value="${kindOfExam.toString()}"
+                                    th:text="${kindOfExam.toString()}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="typeOfCase">Тип экспертизы</label>
+                        <select class="custom-select" id="typeOfCase" name="typeOfCase" th:name="typeOfCase">
+                            <option th:each="type : ${typeOfCase}" th:value="${type.toString()}"
+                                    th:text="${type.toString()}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="difficulty">Сложность</label>
+                        <select class="custom-select" id="difficulty" name="difficulty" th:name="difficulty">
+                            <option th:each="difficult : ${difficulty}" th:value="${difficult.toString()}"
+                                    th:text="${difficult.toString()}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="dateIntakeFrom">Дата поступления с...</label>
+                        <input type="date" class="form-control" name="dateIntakeFrom" id="dateIntakeFrom" placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dateIntakeTo">Дата поступления по...</label>
+                        <input type="date" class="form-control" name="dateIntakeTo" id="dateIntakeTo" placeholder=""
+                               value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="dateExecFrom">Дата выполнения с...</label>
+                        <input type="date" class="form-control" name="dateExecFrom" id="dateExecFrom" placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dateExecTo">Дата выполнения по...</label>
+                        <input type="date" class="form-control" name="dateExecTo" id="dateExecTo" placeholder=""
+                               value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="initiator">Имя инициатора</label>
+                        <input type="text" class="form-control" name="initiator" id="initiator" placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="numberOfCase">Номер инцидента</label>
+                        <input type="text" class="form-control" name="numberOfCase" id="numberOfCase" placeholder=""
+                               value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="objectOfCase">Объекты</label>
+                        <input type="text" class="form-control" name="objectOfCase" id="objectOfCase" placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="numberOfObjects">Количество объектов</label>
+                        <input type="text" class="form-control" name="numberOfObjects" id="numberOfObjects"
+                               placeholder=""
+                               value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="numberOfQuestions">Количество вопросов</label>
+                        <input type="text" class="form-control" name="numberOfQuestions" id="numberOfQuestions"
+                               placeholder=""
+                               value="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="supervisor">Субъект КМР</label>
+                        <select class="custom-select" id="supervisor" name="supervisor" th:name="supervisor">
+                            <option th:each="supervisor : ${supervisors}" th:value="${supervisor.getExaminerName()}"
+                                    th:text="${supervisor.getExaminerName()}"></option>
+                        </select>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit"><span data-feather="search"></span>
+                    Найти...
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:insert="navbar :: footer"></footer>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous">
+</script>
+<div th:insert="navbar :: scriptForIcons"></div>
+</body>
+</html>
