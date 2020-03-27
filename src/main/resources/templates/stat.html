@@ -10,16 +10,7 @@
     <title>RPT stats</title>
 </head>
 <body>
-
-<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">RPT</a>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Выйти <span data-feather="log-out"></span></a>
-        </li>
-    </ul>
-</nav>
-
+<nav th:insert="navbar :: topnavbar"></nav>
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -38,7 +29,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/filter" th:action="@{filter}">
+                        <a class="nav-link" href="/search" th:action="@{search}">
                             <span data-feather="search"></span>
                             Найти
                         </a>

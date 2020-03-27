@@ -36,11 +36,8 @@ public class SearchExaminationController {
 
     @PostMapping(path = "search")
     public String postSearchPage(@RequestParam(name = "code") String code,
-                                 @RequestParam(name = "dateFrom") String dateIntakeFrom,
-                                 @RequestParam(name = "dateTo") String dateIntakeTo,
                                  @RequestParam(name = "kindOfExamination") KindOfExamination kindOfExamination,
                                  @RequestParam(name = "typeOfCase") TypeOfCase typeOfCase,
-                                 @RequestParam(name = "difficulty") Difficulty difficulty,
                                  Model model) {
         //Ошибка в принятии параметра.Ожидает Util???
         //Ошибка в принятии параметра.Ожидает Util???
@@ -57,7 +54,7 @@ public class SearchExaminationController {
 //                new ExaminationSpecification(new SearchCriteria("dateIntake", ">", date1));
 //        ExaminationSpecification specDateIntakeTO =
 //                new ExaminationSpecification(new SearchCriteria("dateIntake", "<", date2));
-        List<Examination> examinationList = examinationsRepository.findAll(Specification.where(specTypeOfCase));
+        List<Examination> examinationList = examinationsRepository.findAll(Specification.where(specCode));
         model.addAttribute("examinations", examinationList);
         return "searchresult";
     }
